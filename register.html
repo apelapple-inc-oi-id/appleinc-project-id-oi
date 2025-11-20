@@ -3,88 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Buat Apple ID Baru</title>
+  <title>Apple Invest - Daftar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Reset & Base Styles */
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
-
+    
     :root {
-      --apple-blue: #007AFF;
-      --apple-purple: #5856D6;
-      --apple-pink: #FF2D55;
-      --apple-orange: #FF9500;
-      --apple-green: #34C759;
-      --apple-black: #1D1D1F;
-      --apple-dark-gray: #424245;
-      --apple-gray: #86868B;
-      --apple-light-gray: #D2D2D7;
-      --apple-bg: #F5F5F7;
-      --apple-white: #FFFFFF;
-      --glass-bg: rgba(255, 255, 255, 0.15);
-      --glass-border: rgba(255, 255, 255, 0.2);
+      --primary: #007AFF;
+      --primary-light: #5AC8FA;
+      --secondary: #FF2D55;
+      --accent: #32D74B;
+      --bg: #000000;
+      --card: #1C1C1E;
+      --card-light: #2C2C2E;
+      --text: #FFFFFF;
+      --text-muted: #8E8E93;
+      --border: #38383A;
+      --gradient-primary: linear-gradient(135deg, #007AFF, #5AC8FA);
+      --gradient-apple: linear-gradient(135deg, #000000, #1C1C1E);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+      --shadow-apple: 0 10px 30px rgba(0,0,0,0.7);
     }
-
-    html, body {
-      overflow-x: hidden;
-      width: 100%;
-      position: relative;
-    }
-
+    
     body {
-      background: linear-gradient(135deg, #0c0c0e 0%, #1a1a2e 30%, #16213e 70%, #0f3460 100%);
-      color: var(--apple-white);
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
       min-height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      position: relative;
+      flex-direction: column;
     }
-
-    /* Animated Background Elements */
-    .bg-elements {
+    
+    /* Animated Background */
+    .bg-animation {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -2;
+      z-index: -1;
       overflow: hidden;
     }
-
-    .bg-element {
+    
+    .bg-circle {
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
       filter: blur(40px);
-      animation: float 15s infinite linear;
+      animation: float 20s infinite linear;
     }
-
-    .bg-element:nth-child(1) {
+    
+    .bg-circle:nth-child(1) {
       width: 300px;
       height: 300px;
       top: 10%;
       left: 5%;
-      background: radial-gradient(circle, rgba(88, 86, 214, 0.15) 0%, rgba(88, 86, 214, 0) 70%);
+      background: radial-gradient(circle, rgba(0, 122, 255, 0.1) 0%, rgba(0, 122, 255, 0) 70%);
       animation-delay: 0s;
     }
-
-    .bg-element:nth-child(2) {
+    
+    .bg-circle:nth-child(2) {
       width: 400px;
       height: 400px;
       top: 60%;
       left: 80%;
-      background: radial-gradient(circle, rgba(0, 122, 255, 0.15) 0%, rgba(0, 122, 255, 0) 70%);
+      background: radial-gradient(circle, rgba(255, 45, 85, 0.1) 0%, rgba(255, 45, 85, 0) 70%);
       animation-delay: -5s;
     }
-
-    .bg-element:nth-child(3) {
+    
+    .bg-circle:nth-child(3) {
       width: 250px;
       height: 250px;
       top: 30%;
@@ -92,16 +90,7 @@
       background: radial-gradient(circle, rgba(52, 199, 89, 0.1) 0%, rgba(52, 199, 89, 0) 70%);
       animation-delay: -10s;
     }
-
-    .bg-element:nth-child(4) {
-      width: 350px;
-      height: 350px;
-      top: 70%;
-      left: 15%;
-      background: radial-gradient(circle, rgba(255, 45, 85, 0.1) 0%, rgba(255, 45, 85, 0) 70%);
-      animation-delay: -7s;
-    }
-
+    
     @keyframes float {
       0% {
         transform: translate(0, 0) rotate(0deg);
@@ -119,1176 +108,779 @@
         transform: translate(0, 0) rotate(360deg);
       }
     }
-
-    /* Grid Background */
-    .grid-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      z-index: -1;
-    }
-
-    /* Main Container */
-    .container {
-      width: 100%;
-      max-width: 480px;
-      animation: fadeIn 0.8s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Glass Card */
-    .card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      color: var(--apple-white);
-      padding: 45px 35px;
-      border-radius: 24px;
-      box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        0 0 0 1px var(--glass-border);
-      width: 100%;
+    
+    header {
+      background: var(--gradient-apple);
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border);
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
-
-    .card::before {
+    
+    header::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.15;
+      z-index: 0;
     }
-
-    .card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 30%);
-      pointer-events: none;
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
     }
-
-    /* Header Section */
-    .header {
-      text-align: center;
-      margin-bottom: 35px;
-    }
-
-    .apple-logo {
-      width: 90px;
-      height: 90px;
-      margin: 0 auto 25px;
-      background: linear-gradient(135deg, var(--apple-blue) 0%, var(--apple-purple) 100%);
-      border-radius: 22px;
+    
+    .back-button {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      border-radius: 12px;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: 40px;
-      font-weight: 300;
-      box-shadow: 
-        0 10px 30px rgba(88, 86, 214, 0.4),
-        inset 0 1px 1px rgba(255, 255, 255, 0.3);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      overflow: hidden;
+      color: var(--text);
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
     }
-
-    .apple-logo::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+    
+    .back-button:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateX(-3px);
     }
-
-    .apple-logo:hover {
-      transform: scale(1.05) rotate(5deg);
-      box-shadow: 
-        0 15px 40px rgba(88, 86, 214, 0.6),
-        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    
+    .header-text {
+      flex: 1;
     }
-
-    .card h1 {
-      font-size: 34px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+    
+    .header-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #FFFFFF, #E8E8E8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
     }
-
-    .subtitle {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 18px;
-      font-weight: 400;
-    }
-
-    /* Form Elements */
-    .form-container {
-      margin-top: 25px;
-    }
-
-    .input-group {
-      margin-bottom: 25px;
-      position: relative;
-    }
-
-    .input-label {
-      display: flex;
-      align-items: center;
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: rgba(255, 255, 255, 0.95);
-      letter-spacing: -0.3px;
-    }
-
-    .input-label i {
-      margin-right: 10px;
-      font-size: 16px;
-      width: 20px;
-      text-align: center;
-    }
-
-    .input-wrapper {
-      position: relative;
-    }
-
-    input {
-      width: 100%;
-      padding: 18px 20px;
-      border: 1.5px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      font-size: 16px;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--apple-white);
-      transition: all 0.3s;
-      font-weight: 500;
-      letter-spacing: 0.2px;
-    }
-
-    input::placeholder {
-      color: rgba(255, 255, 255, 0.4);
-      font-weight: 400;
-    }
-
-    input:focus {
-      outline: none;
-      border-color: var(--apple-blue);
-      box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.15);
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    input.error {
-      border-color: var(--apple-pink);
-      box-shadow: 0 0 0 4px rgba(255, 45, 85, 0.15);
-    }
-
-    input.success {
-      border-color: var(--apple-green);
-    }
-
-    .input-icon {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 18px;
-    }
-
-    .input-hint {
+    
+    .header-subtitle {
       font-size: 14px;
-      color: rgba(255, 255, 255, 0.6);
-      margin-top: 8px;
-      display: block;
-      padding-left: 30px;
+      color: var(--text-muted);
       font-weight: 500;
-      letter-spacing: 0.1px;
     }
-
-    .input-hint.error {
-      color: var(--apple-pink);
-    }
-
-    .input-hint.success {
-      color: var(--apple-green);
-    }
-
-    /* Progress Bar */
-    .progress-bar {
-      height: 4px;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 2px;
-      margin-top: 8px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(135deg, var(--apple-blue) 0%, var(--apple-purple) 100%);
-      border-radius: 2px;
-      width: 0%;
-      transition: width 0.5s ease;
-    }
-
-    .password-strength {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 8px;
-    }
-
-    .strength-label {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.6);
-      font-weight: 600;
-      letter-spacing: 0.2px;
-    }
-
-    /* Captcha Section */
-    .captcha-section {
-      background: rgba(0, 122, 255, 0.08);
-      border-radius: 16px;
-      padding: 20px;
-      margin: 25px 0;
-      border: 1px solid rgba(0, 122, 255, 0.15);
-    }
-
-    .captcha-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .captcha-display {
-      background: linear-gradient(135deg, var(--apple-blue) 0%, var(--apple-purple) 100%);
-      color: white;
-      padding: 15px 20px;
-      border-radius: 12px;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 3px;
+    
+    main {
       flex: 1;
-      text-align: center;
-      user-select: none;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 60px;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 4px 12px rgba(88, 86, 214, 0.3);
-      position: relative;
-      overflow: hidden;
-      font-family: 'Courier New', monospace;
+      padding: 20px 16px;
     }
-
-    .captcha-display:hover {
-      transform: scale(1.02);
-      background: linear-gradient(135deg, var(--apple-purple) 0%, var(--apple-blue) 100%);
-      box-shadow: 0 6px 16px rgba(88, 86, 214, 0.4);
-    }
-
-    .captcha-display:active {
-      transform: scale(0.98);
-    }
-
-    .captcha-display::after {
-      content: '⟳';
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 14px;
-      opacity: 0.7;
-    }
-
-    .captcha-input {
-      flex: 2;
-      padding: 15px 18px;
-      border: 1.5px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      font-size: 16px;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--apple-white);
-      transition: all 0.3s;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-align: center;
-    }
-
-    .captcha-input:focus {
-      outline: none;
-      border-color: var(--apple-blue);
-      box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.15);
-    }
-
-    /* Submit Button */
-    button.submit-btn {
+    
+    .register-container {
       width: 100%;
-      padding: 20px;
-      background: linear-gradient(135deg, var(--apple-blue) 0%, var(--apple-purple) 100%);
-      border: none;
-      border-radius: 16px;
-      font-weight: 700;
-      font-size: 18px;
-      color: var(--apple-white);
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      margin-top: 15px;
-      box-shadow: 
-        0 8px 20px rgba(88, 86, 214, 0.4),
-        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+      max-width: 400px;
+    }
+    
+    .register-card {
+      background: var(--gradient-apple);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow-apple);
+      border: 1px solid rgba(255,255,255,0.1);
       position: relative;
       overflow: hidden;
-      letter-spacing: 0.3px;
     }
-
-    button.submit-btn::before {
+    
+    .register-card::before {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
+      left: 0;
       width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
+      height: 4px;
+      background: var(--gradient-primary);
     }
-
-    button.submit-btn:hover:enabled {
+    
+    .register-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+    
+    .register-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    
+    .form-input {
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 16px;
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: rgba(255,255,255,0.15);
+    }
+    
+    .form-input::placeholder {
+      color: var(--text-muted);
+    }
+    
+    .referral-input-highlight {
+      background: rgba(0, 122, 255, 0.1) !important;
+      border: 2px solid #007AFF !important;
+      color: #007AFF !important;
+      font-weight: 600 !important;
+    }
+    
+    .referral-message {
+      background: linear-gradient(135deg, #007AFF, #5AC8FA);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin: 10px 0;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.2);
+      animation: slideDown 0.5s ease-out;
+    }
+    
+    .referral-message i {
+      margin: 0 8px;
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .register-button {
+      width: 100%;
+      background: var(--gradient-primary);
+      border: none;
+      border-radius: 14px;
+      padding: 16px;
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+      box-shadow: var(--shadow-apple);
+    }
+    
+    .register-button:hover {
       transform: translateY(-2px);
-      box-shadow: 
-        0 12px 25px rgba(88, 86, 214, 0.5),
-        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+      box-shadow: var(--shadow-md);
     }
-
-    button.submit-btn:hover:enabled::before {
-      left: 100%;
-    }
-
-    button.submit-btn:active:enabled {
+    
+    .register-button:active {
       transform: translateY(0);
     }
-
-    button.submit-btn:disabled {
-      background: rgba(255, 255, 255, 0.1);
-      cursor: not-allowed;
-      box-shadow: none;
-      transform: none;
-      color: rgba(255, 255, 255, 0.4);
-    }
-
-    /* Divider */
-    .divider {
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-      margin: 30px 0;
-    }
-
-    /* Terms & Links */
-    .terms {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.6);
-      text-align: center;
-      line-height: 1.6;
-      font-weight: 500;
-      letter-spacing: 0.1px;
-    }
-
-    .terms a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: color 0.2s;
-      font-weight: 600;
-    }
-
-    .terms a:hover {
-      color: var(--apple-blue);
-      text-decoration: underline;
-    }
-
+    
     .login-link {
       text-align: center;
-      margin-top: 25px;
-      font-size: 16px;
-      color: rgba(255, 255, 255, 0.7);
-      font-weight: 500;
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--text-muted);
     }
-
+    
     .login-link a {
-      color: var(--apple-blue);
+      color: var(--primary);
       text-decoration: none;
       font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: color 0.2s;
-      letter-spacing: 0.2px;
     }
-
+    
     .login-link a:hover {
-      color: var(--apple-purple);
       text-decoration: underline;
     }
-
-    /* Notification */
-    .notification {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(30, 30, 35, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      color: var(--apple-white);
-      padding: 30px;
-      border-radius: 20px;
-      z-index: 1000;
+    
+    /* Modal styles */
+    .modal {
       display: none;
-      text-align: center;
-      box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.1);
-      max-width: 85%;
-      width: 380px;
-      animation: notificationSlide 0.3s ease-out;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    @keyframes notificationSlide {
-      from { opacity: 0; transform: translate(-50%, -40%); }
-      to { opacity: 1; transform: translate(-50%, -50%); }
-    }
-
-    .notification.error {
-      border-top: 4px solid var(--apple-pink);
-    }
-
-    .notification.success {
-      border-top: 4px solid var(--apple-green);
-    }
-
-    .notification-icon {
-      font-size: 48px;
-      margin-bottom: 20px;
-      color: var(--apple-blue);
-    }
-
-    .notification.error .notification-icon {
-      color: var(--apple-pink);
-    }
-
-    .notification.success .notification-icon {
-      color: var(--apple-green);
-    }
-
-    .notification-message {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 25px;
-      letter-spacing: 0.2px;
-      line-height: 1.4;
-    }
-
-    .overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 999;
-      display: none;
-      animation: fadeIn 0.3s;
-    }
-
-    /* Language Selector */
-    .language-selector {
-      position: absolute;
-      top: 25px;
-      right: 25px;
-    }
-
-    .language-selector select {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.9);
-      cursor: pointer;
-      transition: all 0.3s;
-      font-weight: 500;
-    }
-
-    .language-selector select:focus {
-      outline: none;
-      border-color: var(--apple-blue);
-      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
-    }
-
-    /* Privacy Note */
-    .privacy-note {
-      background: rgba(0, 122, 255, 0.1);
-      border-radius: 12px;
-      padding: 16px;
-      margin: 20px 0;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.8);
-      border-left: 3px solid var(--apple-blue);
-      font-weight: 500;
-      letter-spacing: 0.1px;
-    }
-
-    .privacy-note i {
-      color: var(--apple-blue);
-      margin-right: 10px;
-    }
-
-    /* Bonus Note */
-    .bonus-note {
-      background: rgba(52, 199, 89, 0.1);
-      border-radius: 12px;
-      padding: 16px;
-      margin: 10px 0 20px 0;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.9);
-      border-left: 3px solid var(--apple-green);
-      font-weight: 600;
-      letter-spacing: 0.1px;
-      display: flex;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
       align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
     }
-
-    .bonus-note i {
-      color: var(--apple-green);
-      margin-right: 10px;
-      font-size: 16px;
+    
+    .modal-content {
+      background: var(--gradient-apple);
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 380px;
+      width: 90%;
+      text-align: center;
+      box-shadow: var(--shadow-apple);
+      animation: modalAppear 0.4s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
     }
-
-    /* Responsive Design */
-    @media (max-width: 480px) {
-      .card {
-        padding: 35px 25px;
-        border-radius: 20px;
-      }
-      
-      .card h1 {
-        font-size: 28px;
-      }
-      
-      input {
-        padding: 16px 18px;
-      }
-      
-      .notification {
-        width: 90%;
-        padding: 25px;
-      }
-      
-      .apple-logo {
-        width: 80px;
-        height: 80px;
-        font-size: 36px;
-      }
-      
-      .captcha-container {
-        flex-direction: column;
-      }
-      
-      .captcha-display {
-        width: 100%;
-      }
+    
+    .modal-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient-primary);
     }
-
+    
+    @keyframes modalAppear {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    
+    .modal-icon {
+      font-size: 56px;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+    
+    .modal.error .modal-icon {
+      color: var(--secondary);
+    }
+    
+    .modal.success .modal-icon {
+      color: var(--accent);
+    }
+    
+    .modal h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+    
+    .modal p {
+      margin-bottom: 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .modal button {
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      box-shadow: var(--shadow-apple);
+    }
+    
+    .modal button:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    
     /* Loading Animation */
     .loading-spinner {
       display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: 50%;
       border-top-color: #fff;
       animation: spin 0.8s ease-in-out infinite;
-      margin-right: 10px;
+      margin-right: 8px;
     }
-
+    
     @keyframes spin {
       to { transform: rotate(360deg); }
+    }
+    
+    /* Button loading state */
+    .btn-loading {
+      position: relative;
+      color: transparent !important;
+    }
+    
+    .btn-loading::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 50%;
+      left: 50%;
+      margin-left: -9px;
+      margin-top: -9px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 0.8s ease-in-out infinite;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .register-card {
+        padding: 20px;
+      }
+      
+      .register-title {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="bg-elements">
-    <div class="bg-element"></div>
-    <div class="bg-element"></div>
-    <div class="bg-element"></div>
-    <div class="bg-element"></div>
+  <div class="bg-animation">
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
   </div>
-  
-  <div class="grid-bg"></div>
 
-  <div class="container">
-    <div class="language-selector">
-      <select id="language">
-        <option value="id">Bahasa Indonesia</option>
-        <option value="en">English</option>
-      </select>
+  <header>
+    <div class="header-content">
+      <button class="back-button" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div class="header-text">
+        <h1 class="header-title">Daftar Akun</h1>
+        <p class="header-subtitle">Bergabung dengan Apple Invest</p>
+      </div>
     </div>
-    
-    <div class="card">
-      <div class="header">
-        <div class="apple-logo">
-          <i class="fa-brands fa-apple"></i>
-        </div>
-        <h1>Buat Apple ID</h1>
-        <p class="subtitle">Buat akun untuk mulai berinvestasi</p>
-      </div>
-   
-      <div class="privacy-note">
-        <i class="fas fa-shield-alt"></i>
-        <span>Informasi Anda aman dan terenkripsi.</span>
-      </div>
-      
-      <div class="form-container">
-        <form onsubmit="register(event)">
-          <div class="input-group">
-            <label class="input-label">
-              <i class="fas fa-mobile-alt"></i>Nomor Telepon
-            </label>
-            <div class="input-wrapper">
-              <input type="tel" id="nohp" placeholder="8xxxxxxxxxx" required autofocus />
-              <span class="input-icon"><i class="fas fa-mobile-alt"></i></span>
-            </div>
-            <span class="input-hint" id="phoneHint">Harus diawali dengan 8, 11-12 digit angka</span>
+  </header>
+  
+  <main>
+    <div class="register-container">
+      <div class="register-card">
+        <h2 class="register-title">Buat Akun Baru</h2>
+        <p class="register-subtitle">Isi data diri Anda untuk mulai berinvestasi</p>
+        
+        <!-- Pesan Referral akan ditampilkan di sini -->
+        <div id="referralMessageContainer"></div>
+        
+        <form id="registerForm">
+          <div class="form-group">
+            <label class="form-label" for="nama">Nama Lengkap</label>
+            <input type="text" id="nama" class="form-input" placeholder="Masukkan nama lengkap" required>
           </div>
           
-          <div class="input-group">
-            <label class="input-label">
-              <i class="fas fa-lock"></i>Kata Sandi
-            </label>
-            <div class="input-wrapper">
-              <input type="password" id="password" placeholder="Minimal 6 karakter" minlength="6" required />
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" id="passwordStrength"></div>
-            </div>
-            <div class="password-strength">
-              <span class="strength-label">Kekuatan kata sandi</span>
-              <span class="strength-label" id="strengthText">Lemah</span>
-            </div>
+          <div class="form-group">
+            <label class="form-label" for="nohp">Nomor HP</label>
+            <input type="tel" id="nohp" class="form-input" placeholder="Contoh: 081234567890" required>
           </div>
           
-          <div class="input-group">
-            <label class="input-label">
-              <i class="fas fa-redo"></i>Konfirmasi Kata Sandi
-            </label>
-            <div class="input-wrapper">
-              <input type="password" id="confirmPassword" placeholder="Ketik ulang kata sandi" required />
-            </div>
-            <span class="input-hint" id="confirmHint">Kedua kata sandi harus sama</span>
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" id="email" class="form-input" placeholder="Masukkan email aktif" required>
           </div>
           
-          <div class="input-group">
-            <label class="input-label">
-              <i class="fas fa-gift" style="color: var(--apple-orange);"></i>Kode Undangan (Opsional)
-            </label>
-            <div class="input-wrapper">
-              <input type="text" id="referral" placeholder="Masukkan kode undangan" />
-              <span class="input-icon"><i class="fas fa-gift" style="color: var(--apple-orange);"></i></span>
-            </div>
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" class="form-input" placeholder="Buat password yang kuat" required>
           </div>
           
-          <div class="captcha-section">
-            <label class="input-label">
-              <i class="fas fa-shield-alt"></i>Kode Keamanan
-            </label>
-            <div class="captcha-container">
-              <div class="captcha-display" id="captchaCode" onclick="generateCaptcha()">
-                <span id="captchaText">6624</span>
-              </div>
-              <input type="text" class="captcha-input" id="captchaInput" placeholder="Masukkan kode" maxlength="4" required />
-            </div>
-            <span class="input-hint">Klik kode untuk memperbarui</span>
+          <div class="form-group">
+            <label class="form-label" for="konfirmasiPassword">Konfirmasi Password</label>
+            <input type="password" id="konfirmasiPassword" class="form-input" placeholder="Ulangi password" required>
           </div>
           
-          <button type="submit" class="submit-btn" id="btnDaftar">
-            <span id="btnText">Buat Apple ID</span>
-            <div id="btnSpinner" style="display: none;">
-              <div class="loading-spinner"></div> Memproses...
-            </div>
+          <div class="form-group">
+            <label class="form-label" for="referralCode">Kode Referral (Opsional)</label>
+            <input type="text" id="referralCode" class="form-input" placeholder="Masukkan kode referral">
+          </div>
+          
+          <button type="submit" class="register-button" id="registerBtn">
+            Daftar Sekarang
           </button>
         </form>
         
-        <div class="divider"></div>
-        
-        <div class="terms">
-          Dengan membuat Apple ID, Anda menyetujui 
-          <a href="#">Ketentuan Layanan</a> dan 
-          <a href="#">Kebijakan Privasi</a> Apple.
-        </div>
-        
         <div class="login-link">
-          <a href="index.html">
-            <i class="fas fa-arrow-left"></i> Sudah punya Apple ID? Masuk
-          </a>
+          Sudah punya akun? <a href="index.html">Masuk di sini</a>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="overlay" id="overlay"></div>
-  <div class="notification" id="notification">
-    <div class="notification-icon">
-      <i class="fas fa-check-circle" id="notificationIcon"></i>
+  </main>
+  
+  <!-- Modal untuk pesan -->
+  <div class="modal" id="messageModal">
+    <div class="modal-content">
+      <i class="fas fa-check-circle modal-icon" id="modalIcon"></i>
+      <h3 id="modalTitle">Berhasil</h3>
+      <p id="modalMessage">Pesan berhasil ditampilkan.</p>
+      <button id="modalButton">Tutup</button>
     </div>
-    <div class="notification-message" id="notificationMessage"></div>
   </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-import { getDatabase, ref, get, update, set } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getDatabase, ref, set, get, push } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAuJSxpcFZ1QI-dEsEnx2qSqlb0wsvs6Mc",
-  authDomain: "lginvest-776cf.firebaseapp.com",
-  databaseURL: "https://lginvest-776cf-default-rtdb.firebaseio.com",
-  projectId: "lginvest-776cf",
-  storageBucket: "lginvest-776cf.firebasestorage.app",
-  messagingSenderId: "831934282072",
-  appId: "1:831934282072:web:6a8b7a5bcba5d4d1264d2d",
-  measurementId: "G-265YF9DYCF"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-// Store current captcha globally
-let currentCaptcha = '';
-
-// Notification functions
-function showNotification(msg, isError = false, isSuccess = false) {
-  const notification = document.getElementById('notification');
-  const overlay = document.getElementById('overlay');
-  const message = document.getElementById('notificationMessage');
-  const icon = document.getElementById('notificationIcon');
-  
-  message.textContent = msg;
-  
-  if (isError) {
-    notification.className = 'notification error';
-    icon.className = 'fas fa-exclamation-circle';
-  } else if (isSuccess) {
-    notification.className = 'notification success';
-    icon.className = 'fas fa-check-circle';
-  } else {
-    notification.className = 'notification';
-    icon.className = 'fas fa-info-circle';
-  }
-  
-  notification.style.display = 'block';
-  overlay.style.display = 'block';
-  
-  // Auto hide notification after 1.5 seconds
-  setTimeout(() => {
-    hideNotification();
-  }, 1500);
-}
-
-function hideNotification() {
-  document.getElementById('notification').style.display = 'none';
-  document.getElementById('overlay').style.display = 'none';
-}
-
-// Generate captcha code - FIXED VERSION
-function generateCaptcha() {
-  // Generate 4-digit random number
-  const captcha = Math.floor(1000 + Math.random() * 9000).toString();
-  currentCaptcha = captcha;
-  
-  // Update display
-  document.getElementById('captchaText').textContent = captcha;
-  
-  // Add animation effect
-  const captchaDisplay = document.getElementById('captchaCode');
-  captchaDisplay.style.transform = 'scale(0.95)';
-  setTimeout(() => {
-    captchaDisplay.style.transform = 'scale(1)';
-  }, 150);
-  
-  console.log('New CAPTCHA generated:', captcha); // For debugging
-  return captcha;
-}
-
-// Validate phone number
-function validatePhoneNumber(phone) {
-  return /^8\d{10,11}$/.test(phone);
-}
-
-// Validate password strength
-function checkPasswordStrength(password) {
-  let strength = 0;
-  
-  if (password.length >= 6) strength += 25;
-  if (password.length >= 8) strength += 15;
-  if (/[A-Z]/.test(password)) strength += 20;
-  if (/[0-9]/.test(password)) strength += 20;
-  if (/[^A-Za-z0-9]/.test(password)) strength += 20;
-  
-  return Math.min(strength, 100);
-}
-
-// Validate passwords match
-function validatePasswordMatch(password, confirmPassword) {
-  return password === confirmPassword && password !== '';
-}
-
-// Real-time validation
-document.addEventListener('DOMContentLoaded', function() {
-  const nohpInput = document.getElementById('nohp');
-  const passwordInput = document.getElementById('password');
-  const confirmPasswordInput = document.getElementById('confirmPassword');
-  const phoneHint = document.getElementById('phoneHint');
-  const confirmHint = document.getElementById('confirmHint');
-  const passwordStrength = document.getElementById('passwordStrength');
-  const strengthText = document.getElementById('strengthText');
-  
-  // Initialize captcha on page load
-  generateCaptcha();
-  
-  // Phone number validation - auto remove 0 at beginning
-  nohpInput.addEventListener('input', function() {
-    // Remove any non-digit characters
-    this.value = this.value.replace(/\D/g, '');
-    
-    // If starts with 0, remove it
-    if (this.value.startsWith('0')) {
-      this.value = this.value.substring(1);
-    }
-    
-    // If doesn't start with 8, set to empty
-    if (this.value && !this.value.startsWith('8')) {
-      this.value = '8' + this.value.substring(1);
-    }
-    
-    const isValid = validatePhoneNumber(this.value);
-    
-    if (this.value && !isValid) {
-      this.classList.add('error');
-      this.classList.remove('success');
-      phoneHint.classList.add('error');
-      phoneHint.textContent = 'Nomor HP harus 11-12 digit dan diawali dengan 8';
-    } else if (isValid) {
-      this.classList.remove('error');
-      this.classList.add('success');
-      phoneHint.classList.remove('error');
-      phoneHint.classList.add('success');
-      phoneHint.textContent = 'Nomor HP valid';
-    } else {
-      this.classList.remove('error', 'success');
-      phoneHint.classList.remove('error', 'success');
-      phoneHint.textContent = 'Harus diawali dengan 8, 11-12 digit angka';
-    }
-    
-    updateSubmitButton();
-  });
-  
-  // Password validation
-  passwordInput.addEventListener('input', function() {
-    const strength = checkPasswordStrength(this.value);
-    passwordStrength.style.width = strength + '%';
-    
-    // Update strength text
-    if (strength < 40) {
-      strengthText.textContent = 'Lemah';
-      passwordStrength.style.background = 'linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)';
-    } else if (strength < 70) {
-      strengthText.textContent = 'Cukup';
-      passwordStrength.style.background = 'linear-gradient(135deg, #FF9500 0%, #FFCC00 100%)';
-    } else {
-      strengthText.textContent = 'Kuat';
-      passwordStrength.style.background = 'linear-gradient(135deg, #34C759 0%, #5AC8FA 100%)';
-    }
-    
-    // Also update confirm password if it has value
-    if (confirmPasswordInput.value) {
-      const isMatch = validatePasswordMatch(this.value, confirmPasswordInput.value);
-      
-      if (confirmPasswordInput.value && !isMatch) {
-        confirmPasswordInput.classList.add('error');
-        confirmPasswordInput.classList.remove('success');
-        confirmHint.classList.add('error');
-        confirmHint.textContent = 'Kata sandi tidak cocok';
-      } else if (isMatch) {
-        confirmPasswordInput.classList.remove('error');
-        confirmPasswordInput.classList.add('success');
-        confirmHint.classList.remove('error');
-        confirmHint.classList.add('success');
-        confirmHint.textContent = 'Kata sandi cocok';
-      } else {
-        confirmPasswordInput.classList.remove('error', 'success');
-        confirmHint.classList.remove('error', 'success');
-        confirmHint.textContent = 'Kedua kata sandi harus sama';
-      }
-    }
-    
-    updateSubmitButton();
-  });
-  
-  // Confirm password validation
-  confirmPasswordInput.addEventListener('input', function() {
-    const isMatch = validatePasswordMatch(passwordInput.value, this.value);
-    
-    if (this.value && !isMatch) {
-      this.classList.add('error');
-      this.classList.remove('success');
-      confirmHint.classList.add('error');
-      confirmHint.textContent = 'Kata sandi tidak cocok';
-    } else if (isMatch) {
-      this.classList.remove('error');
-      this.classList.add('success');
-      confirmHint.classList.remove('error');
-      confirmHint.classList.add('success');
-      confirmHint.textContent = 'Kata sandi cocok';
-    } else {
-      this.classList.remove('error', 'success');
-      confirmHint.classList.remove('error', 'success');
-      confirmHint.textContent = 'Kedua kata sandi harus sama';
-    }
-    
-    updateSubmitButton();
-  });
-  
-  // Captcha validation
-  document.getElementById('captchaInput').addEventListener('input', function() {
-    updateSubmitButton();
-  });
-});
-
-// Update submit button state
-function updateSubmitButton() {
-  const nohp = document.getElementById('nohp').value;
-  const password = document.getElementById('password').value;
-  const confirmPassword = document.getElementById('confirmPassword').value;
-  const captcha = document.getElementById('captchaInput').value;
-  
-  const isValid = validatePhoneNumber(nohp) && 
-                  password.length >= 6 && 
-                  validatePasswordMatch(password, confirmPassword) &&
-                  captcha.length === 4;
-  
-  document.getElementById('btnDaftar').disabled = !isValid;
-}
-
-// Generate kode referral 7 digit
-function generateReferralCode() {
-  return Math.floor(1000000 + Math.random() * 9000000).toString();
-}
-
-// Form submission handler
-window.register = async function(e) {
-  e.preventDefault();
-  
-  const nohp = document.getElementById('nohp').value.trim();
-  const password = document.getElementById('password').value;
-  const confirmPassword = document.getElementById('confirmPassword').value;
-  const kodeRef = document.getElementById('referral').value.trim();
-  const captchaInput = document.getElementById('captchaInput').value;
-  
-  console.log('Input CAPTCHA:', captchaInput);
-  console.log('Current CAPTCHA:', currentCaptcha);
-  
-  // Validate captcha - FIXED: Use the stored currentCaptcha variable
-  if (captchaInput !== currentCaptcha) {
-    showNotification("Kode keamanan tidak sesuai. Silakan coba lagi.", true);
-    generateCaptcha(); // Refresh captcha jika salah
-    document.getElementById('captchaInput').value = '';
-    document.getElementById('captchaInput').focus();
-    return;
-  }
-  
-  // Show loading state
-  const btn = document.getElementById('btnDaftar');
-  const btnText = document.getElementById('btnText');
-  const btnSpinner = document.getElementById('btnSpinner');
-  
-  btnText.style.display = 'none';
-  btnSpinner.style.display = 'block';
-  btn.disabled = true;
-
-  try {
-    // Check if user already exists
-    const userRef = ref(db, "users/" + nohp);
-    const snapshot = await get(userRef);
-    
-    if (snapshot.exists()) {
-      showNotification("Nomor telepon sudah terdaftar. Silakan gunakan nomor lain.", true);
-      
-      // Reset button state
-      btnText.style.display = 'block';
-      btnSpinner.style.display = 'none';
-      updateSubmitButton();
-      
-      // Refresh captcha
-      generateCaptcha();
-      document.getElementById('captchaInput').value = '';
-      return;
-    }
-
-    // Generate kode referral unik 7 digit
-    const referralCode = generateReferralCode();
-    
-    // Data user baru - TAMBAH BONUS 15.000
-    const userData = {
-      nohp: nohp,
-      password: password,
-      saldo: 15000, // BONUS 15.000 untuk pendaftaran baru
-      referral_code: referralCode,
-      created_at: new Date().toISOString()
+    const firebaseConfig = {
+      apiKey: "AIzaSyAuJSxpcFZ1QI-dEsEnx2qSqlb0wsvs6Mc",
+      authDomain: "lginvest-776cf.firebaseapp.com",
+      databaseURL: "https://lginvest-776cf-default-rtdb.firebaseio.com",
+      projectId: "lginvest-776cf",
+      storageBucket: "lginvest-776cf.firebasestorage.app",
+      messagingSenderId: "831934282072",
+      appId: "1:831934282072:web:6a8b7a5bcba5d4d1264d2d",
+      measurementId: "G-265YF9DYCF"
     };
 
-    // Jika ada kode referral yang diinput, cari upline
-    if (kodeRef) {
-      // Cari user dengan kode referral yang sesuai
-      const usersRef = ref(db, 'users');
-      const usersSnap = await get(usersRef);
-      
-      if (usersSnap.exists()) {
-        const users = usersSnap.val();
-        let uplineNohp = null;
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const auth = getAuth(app);
+
+    // Flag untuk mencegah pemrosesan ganda
+    let isProcessing = false;
+
+    // Fungsi untuk mengambil parameter dari URL
+    function getUrlParameter(name) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(window.location.href);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    // Fungsi untuk mengambil parameter tanpa nama (seperti ?=123456)
+    function getUnnamedParameter() {
+        const url = window.location.href;
+        const questionMarkIndex = url.indexOf('?');
+        if (questionMarkIndex === -1) return null;
         
-        // Cari user dengan kode referral yang sesuai
-        for (const userNohp in users) {
-          if (users[userNohp].referral_code === kodeRef) {
-            uplineNohp = userNohp;
-            break;
-          }
+        const paramString = url.substring(questionMarkIndex + 1);
+        // Jika parameter dimulai dengan =, berarti itu parameter tanpa nama
+        if (paramString.startsWith('=')) {
+            return paramString.substring(1);
         }
         
-        // Jika ditemukan upline, simpan hubungan referral
-        if (uplineNohp) {
-          userData.upline = uplineNohp;
-          
-          // Update downline untuk upline
-          const uplineRef = ref(db, 'users/' + uplineNohp);
-          const uplineSnap = await get(uplineRef);
-          
-          if (uplineSnap.exists()) {
-            const uplineData = uplineSnap.val();
-            const downlineLevel1 = uplineData.downline_level1 || {};
-            downlineLevel1[nohp] = true;
-            
-            await update(uplineRef, { 
-              downline_level1: downlineLevel1 
-            });
-            
-            // Update downline level 2 untuk upline level 2
-            if (uplineData.upline) {
-              const upline2Ref = ref(db, 'users/' + uplineData.upline);
-              const upline2Snap = await get(upline2Ref);
-              
-              if (upline2Snap.exists()) {
-                const upline2Data = upline2Snap.val();
-                const downlineLevel2 = upline2Data.downline_level2 || {};
-                downlineLevel2[nohp] = true;
+        return null;
+    }
+
+    // Fungsi untuk menampilkan pesan referral
+    function showReferralMessage(message) {
+        const messageContainer = document.getElementById('referralMessageContainer');
+        if (!messageContainer) return;
+        
+        messageContainer.innerHTML = `
+            <div class="referral-message">
+                <i class="fas fa-gift"></i>
+                ${message}
+                <i class="fas fa-check"></i>
+            </div>
+        `;
+    }
+
+    // Fungsi untuk setup referral handling
+    function setupReferralHandling() {
+        // Coba ambil kode referral dari parameter URL
+        let referralCode = null;
+        
+        // Coba ambil dengan parameter tanpa nama terlebih dahulu (format: ?=123456)
+        referralCode = getUnnamedParameter();
+        
+        // Jika tidak ada, coba dengan parameter bernama 'ref' (format: ?ref=123456)
+        if (!referralCode) {
+            referralCode = getUrlParameter('ref');
+        }
+        
+        console.log('Referral code dari URL:', referralCode);
+        
+        // Jika ada kode referral, isi otomatis ke input
+        if (referralCode) {
+            const referralInput = document.getElementById('referralCode');
+            if (referralInput) {
+                referralInput.value = referralCode;
+                referralInput.readOnly = true;
+                referralInput.classList.add('referral-input-highlight');
                 
-                await update(upline2Ref, { 
-                  downline_level2: downlineLevel2 
-                });
+                // Tampilkan pesan bahwa kode referral telah terisi otomatis
+                showReferralMessage(`Kode referral <strong>${referralCode}</strong> telah terisi otomatis!`);
                 
-                // Update downline level 3 untuk upline level 3
-                if (upline2Data.upline) {
-                  const upline3Ref = ref(db, 'users/' + upline2Data.upline);
-                  const upline3Snap = await get(upline3Ref);
-                  
-                  if (upline3Snap.exists()) {
-                    const upline3Data = upline3Snap.val();
-                    const downlineLevel3 = upline3Data.downline_level3 || {};
-                    downlineLevel3[nohp] = true;
-                    
-                    await update(upline3Ref, { 
-                      downline_level3: downlineLevel3 
-                    });
-                  }
-                }
-              }
+                // Simpan di localStorage untuk digunakan nanti saat submit form
+                localStorage.setItem('pending_referral', referralCode);
+            }
+        }
+    }
+
+    // Fungsi untuk generate kode referral acak
+    function generateReferralCode() {
+        return Math.floor(1000000 + Math.random() * 9000000).toString();
+    }
+
+    // Fungsi untuk menampilkan modal pesan
+    function showMessage(title, message, type = 'success') {
+      const modal = document.getElementById('messageModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalMessage = document.getElementById('modalMessage');
+      const modalIcon = document.getElementById('modalIcon');
+      const modalButton = document.getElementById('modalButton');
+      
+      modalTitle.textContent = title;
+      modalMessage.textContent = message;
+      
+      // Set icon based on type
+      if (type === 'success') {
+        modalIcon.className = 'fas fa-check-circle modal-icon';
+        modal.className = 'modal success';
+        modalButton.textContent = 'Lanjutkan';
+      } else {
+        modalIcon.className = 'fas fa-exclamation-circle modal-icon';
+        modal.className = 'modal error';
+        modalButton.textContent = 'Tutup';
+      }
+      
+      // Show modal
+      modal.style.display = 'flex';
+      
+      // Auto hide after 3 seconds for success, manual close for errors
+      if (type === 'success') {
+        setTimeout(() => {
+          modal.style.display = 'none';
+          if (title === 'Pendaftaran Berhasil') {
+            window.location.href = 'dashboard.html';
+          }
+        }, 3000);
+      }
+      
+      modalButton.onclick = function() {
+        modal.style.display = 'none';
+        if (title === 'Pendaftaran Berhasil') {
+          window.location.href = 'dashboard.html';
+        }
+      };
+      
+      // Tambahkan event listener untuk klik di luar modal
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+          if (title === 'Pendaftaran Berhasil') {
+            window.location.href = 'dashboard.html';
+          }
+        }
+      });
+    }
+
+    // Fungsi untuk memproses referral
+    async function processReferral(newUserNohp, referralCode) {
+      if (!referralCode || referralCode.trim() === '') return;
+      
+      try {
+        // Cari user yang memiliki kode referral ini
+        const usersRef = ref(db, 'users');
+        const snapshot = await get(usersRef);
+        let referrerNohp = null;
+        
+        if (snapshot.exists()) {
+          const users = snapshot.val();
+          for (const [nohp, user] of Object.entries(users)) {
+            if (user.referral_code === referralCode) {
+              referrerNohp = nohp;
+              break;
             }
           }
         }
+        
+        // Jika menemukan referrer, update downline
+        if (referrerNohp) {
+          // Update downline level 1 referrer
+          const referrerDownlineRef = ref(db, `users/${referrerNohp}/downline_level1/${newUserNohp}`);
+          await set(referrerDownlineRef, true);
+          
+          // Buat komisi untuk referrer
+          const commissionRef = push(ref(db, 'commissions/' + referrerNohp));
+          await set(commissionRef, {
+            jumlah: 50000, // Contoh komisi
+            level: 1,
+            dari: newUserNohp,
+            tanggal: new Date().toISOString(),
+            status: 'pending'
+          });
+          
+          console.log('Referral berhasil diproses untuk:', referrerNohp);
+        } else {
+          console.log('Kode referral tidak valid:', referralCode);
+        }
+      } catch (error) {
+        console.error('Error processing referral:', error);
       }
     }
 
-    // Simpan data user baru
-    await set(userRef, userData);
-    
-    // TAMBAH PESAN BONUS 15.000
-    showNotification("Apple ID berhasil dibuat! Anda mendapatkan bonus Rp 15.000. Anda sekarang dapat mengakses semua layanan Apple.", false, true);
-    
-    // Redirect to dashboard after a delay
-    setTimeout(() => {
-      localStorage.setItem("nohp", nohp);
-      window.location.href = "dashboard.html";
-    }, 1500);
-
-  } catch(err) {
-    console.error("Registration error:", err);
-    showNotification("Terjadi kesalahan saat memproses pendaftaran. Silakan coba lagi.", true);
-    
-    // Reset button state
-    btnText.style.display = 'block';
-    btnSpinner.style.display = 'none';
-    updateSubmitButton();
-    
-    // Refresh captcha
-    generateCaptcha();
-    document.getElementById('captchaInput').value = '';
-  }
-};
-
-// Auto referral from URL
-document.addEventListener('DOMContentLoaded', function() {
-  const params = new URLSearchParams(window.location.search);
-  const kode = params.get('ref');
-  if (kode) document.getElementById('referral').value = kode;
-  
-  // Generate initial captcha - This is now handled in the main DOMContentLoaded
-  // generateCaptcha() is called above
-  
-  // Initialize button state
-  updateSubmitButton();
-  
-  // Add language selector functionality
-  document.getElementById('language').addEventListener('change', function() {
-    if (this.value === 'en') {
-      // In a real app, you would change the language here
-      alert('Language changed to English');
+    // Fungsi untuk menangani pendaftaran
+    async function handleRegistration(userData) {
+      if (isProcessing) return;
+      isProcessing = true;
+      
+      const registerBtn = document.getElementById('registerBtn');
+      const originalText = registerBtn.innerHTML;
+      
+      try {
+        // Tampilkan loading state
+        registerBtn.classList.add('btn-loading');
+        
+        // Validasi password
+        if (userData.password !== userData.konfirmasiPassword) {
+          showMessage('Error', 'Password dan konfirmasi password tidak cocok', 'error');
+          return;
+        }
+        
+        // Cek apakah nomor HP sudah terdaftar
+        const userRef = ref(db, 'users/' + userData.nohp);
+        const snapshot = await get(userRef);
+        
+        if (snapshot.exists()) {
+          showMessage('Error', 'Nomor HP sudah terdaftar', 'error');
+          return;
+        }
+        
+        // Buat user di Firebase Auth
+        const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+        const firebaseUser = userCredential.user;
+        
+        // Generate kode referral untuk user baru
+        const referralCode = generateReferralCode();
+        
+        // Simpan data user ke Realtime Database
+        await set(userRef, {
+          nama: userData.nama,
+          nohp: userData.nohp,
+          email: userData.email,
+          referral_code: referralCode,
+          created_at: new Date().toISOString(),
+          saldo: 0,
+          downline_level1: {},
+          downline_level2: {},
+          downline_level3: {}
+        });
+        
+        // Proses referral jika ada
+        const referralCodeFromUrl = localStorage.getItem('pending_referral') || userData.referralCode;
+        if (referralCodeFromUrl && referralCodeFromUrl.trim() !== '') {
+          await processReferral(userData.nohp, referralCodeFromUrl);
+          localStorage.removeItem('pending_referral');
+        }
+        
+        // Simpan info login di localStorage
+        localStorage.setItem('nohp', userData.nohp);
+        localStorage.setItem('nama', userData.nama);
+        
+        // Tampilkan pesan sukses
+        showMessage('Pendaftaran Berhasil', `Selamat ${userData.nama}, akun Anda berhasil dibuat!`, 'success');
+        
+      } catch (error) {
+        console.error('Error during registration:', error);
+        let errorMessage = 'Terjadi kesalahan saat pendaftaran';
+        
+        if (error.code === 'auth/email-already-in-use') {
+          errorMessage = 'Email sudah terdaftar';
+        } else if (error.code === 'auth/weak-password') {
+          errorMessage = 'Password terlalu lemah, minimal 6 karakter';
+        } else if (error.code === 'auth/invalid-email') {
+          errorMessage = 'Format email tidak valid';
+        }
+        
+        showMessage('Error', errorMessage, 'error');
+      } finally {
+        // Reset button setelah selesai
+        registerBtn.classList.remove('btn-loading');
+        registerBtn.innerHTML = originalText;
+        isProcessing = false;
+      }
     }
-  });
-  
-  // Add overlay click to close notification
-  document.getElementById('overlay').addEventListener('click', hideNotification);
-});
-</script>
 
+    // Fungsi navigasi
+    function goBack() {
+      window.history.back();
+    }
+
+    // Event listener ketika DOM siap
+    document.addEventListener('DOMContentLoaded', function() {
+      // Setup referral handling
+      setupReferralHandling();
+      
+      // Handle form submission
+      const registerForm = document.getElementById('registerForm');
+      if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const userData = {
+            nama: document.getElementById('nama').value.trim(),
+            nohp: document.getElementById('nohp').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            password: document.getElementById('password').value,
+            konfirmasiPassword: document.getElementById('konfirmasiPassword').value,
+            referralCode: document.getElementById('referralCode').value.trim()
+          };
+          
+          // Validasi form
+          if (!userData.nama || !userData.nohp || !userData.email || !userData.password) {
+            showMessage('Error', 'Harap isi semua field yang wajib diisi', 'error');
+            return;
+          }
+          
+          if (userData.nohp.length < 10) {
+            showMessage('Error', 'Nomor HP harus minimal 10 digit', 'error');
+            return;
+          }
+          
+          // Proses pendaftaran
+          handleRegistration(userData);
+        });
+      }
+    });
+
+    window.goBack = goBack;
+  </script>
 </body>
 </html>
