@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Apple Invest - Kelola Bank</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    :root {
+      --primary: #007AFF;
+      --primary-light: #5AC8FA;
+      --secondary: #FF2D55;
+      --accent: #32D74B;
+      --bg: #000000;
+      --card: #1C1C1E;
+      --card-light: #2C2C2E;
+      --text: #FFFFFF;
+      --text-muted: #8E8E93;
+      --border: #38383A;
+      --gold: #FFD700;
+      --purple: #BF5AF2;
+      --gradient-primary: linear-gradient(135deg, #007AFF, #5AC8FA);
+      --gradient-accent: linear-gradient(135deg, #32D74B, #64D2FF);
+      --gradient-apple: linear-gradient(135deg, #000000, #1C1C1E);
+      --shadow-apple: 0 10px 30px rgba(0,0,0,0.7);
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+      font-size: 15px;
+    }
+    
+    /* Header */
+    header {
+      background: var(--gradient-apple);
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header-top {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .back-button {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      margin-right: 16px;
+    }
+    
+    .back-button:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .back-button i {
+      font-size: 18px;
+      color: white;
+    }
+    
+    .header-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    
+    .header-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    
+    main {
+      padding: 20px 16px;
+      max-width: 500px;
+      margin: auto;
+      padding-bottom: 40px;
+    }
+    
+    /* Bank Card */
+    .bank-card {
+      background: var(--gradient-apple);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow-apple);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+    }
+    
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .form-select {
+      width: 100%;
+      padding: 14px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: rgba(255,255,255,0.15);
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 14px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: rgba(255,255,255,0.15);
+    }
+    
+    .form-input::placeholder {
+      color: var(--text-muted);
+    }
+    
+    .save-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--gradient-accent);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-apple);
+      margin-top: 10px;
+    }
+    
+    .save-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+    
+    .save-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    /* Info Card */
+    .info-card {
+      background: var(--gradient-apple);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--shadow-apple);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-top: 20px;
+    }
+    
+    .info-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    
+    .info-text:last-child {
+      margin-bottom: 0;
+    }
+    
+    .warning-text {
+      color: #FF9F0A;
+      font-weight: 600;
+    }
+    
+    /* Existing Bank */
+    .existing-bank {
+      background: var(--gradient-apple);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow-apple);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+    }
+    
+    .bank-status {
+      display: inline-block;
+      background: rgba(50,215,75,0.2);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .bank-details {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .bank-detail-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .bank-detail-item:last-child {
+      border-bottom: none;
+    }
+    
+    .bank-detail-label {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    
+    .bank-detail-value {
+      font-size: 14px;
+      font-weight: 600;
+      text-align: right;
+    }
+    
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+    }
+    
+    .modal-content {
+      background: var(--gradient-apple);
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-apple);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .modal-icon {
+      font-size: 56px;
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+    
+    .modal h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+    
+    .modal p {
+      margin-bottom: 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .modal button {
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+    
+    .modal button:hover {
+      transform: translateY(-2px);
+    }
+    
+    /* Loading */
+    .loading-spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 0.8s ease-in-out infinite;
+      margin-right: 8px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-top">
+      <button class="back-button" onclick="goPage('profil.html')">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 class="header-title">Kelola Bank</h1>
+    </div>
+    <div class="header-subtitle">Tambah atau kelola rekening bank Anda</div>
+  </header>
+  
+  <main>
+    <!-- Tampilkan jika sudah ada bank yang tersimpan -->
+    <div class="existing-bank" id="existingBankSection" style="display: none;">
+      <div class="bank-status">Rekening Terdaftar</div>
+      <div class="bank-details">
+        <div class="bank-detail-item">
+          <span class="bank-detail-label">Jenis Bank/EWallet</span>
+          <span class="bank-detail-value" id="existingBankType">-</span>
+        </div>
+        <div class="bank-detail-item">
+          <span class="bank-detail-label">Nama Penerima</span>
+          <span class="bank-detail-value" id="existingBankName">-</span>
+        </div>
+        <div class="bank-detail-item">
+          <span class="bank-detail-label">Nomor Rekening/EWallet</span>
+          <span class="bank-detail-value" id="existingBankNumber">-</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Form tambah bank -->
+    <div class="bank-card" id="bankFormSection">
+      <h2 class="card-title">Tambah Rekening Baru</h2>
+      
+      <div class="form-group">
+        <label class="form-label">Pilih Bank/EWallet</label>
+        <select class="form-select" id="bankType">
+          <option value="" disabled selected>Pilih bank atau e-wallet</option>
+          <option value="DANA">DANA</option>
+          <option value="OVO">OVO</option>
+          <option value="GoPay">GoPay</option>
+          <option value="Sea Bank">Sea Bank</option>
+          <option value="Mandiri">Bank Mandiri</option>
+          <option value="BCA">Bank BCA</option>
+          <option value="BRI">Bank BRI</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Nama Penerima</label>
+        <input type="text" class="form-input" id="bankName" placeholder="Masukkan nama penerima">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Nomor Rekening/EWallet</label>
+        <input type="text" class="form-input" id="bankNumber" placeholder="Masukkan nomor rekening/ewallet">
+      </div>
+      
+      <button class="save-btn" id="saveBankBtn" onclick="saveBank()">
+        Simpan Rekening
+      </button>
+    </div>
+    
+    <div class="info-card">
+      <p class="info-text">Harap periksa secara berkala pastikan memasukan bank/ewallet dengan benar.</p>
+      <p class="info-text warning-text">Bank tidak bisa di ganti! Satu bank/ewallet hanya bisa di gunakan satu akun.</p>
+    </div>
+  </main>
+  
+  <!-- Modal untuk pesan sukses -->
+  <div class="modal" id="messageModal">
+    <div class="modal-content">
+      <i class="fas fa-check-circle modal-icon"></i>
+      <h3>Rekening Berhasil Disimpan</h3>
+      <p>Informasi bank Anda telah berhasil disimpan.</p>
+      <button onclick="closeModal()">Tutup</button>
+    </div>
+  </div>
+  
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getDatabase, ref, get, set, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAuJSxpcFZ1QI-dEsEnx2qSqlb0wsvs6Mc",
+      authDomain: "lginvest-776cf.firebaseapp.com",
+      databaseURL: "https://lginvest-776cf-default-rtdb.firebaseio.com",
+      projectId: "lginvest-776cf",
+      storageBucket: "lginvest-776cf.firebasestorage.app",
+      messagingSenderId: "831934282072",
+      appId: "1:831934282072:web:6a8b7a5bcba5d4d1264d2d",
+      measurementId: "G-265YF9DYCF"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    let isProcessing = false;
+
+    // Fungsi untuk memuat data bank user
+    function loadBankData() {
+      const nohp = localStorage.getItem('nohp');
+      if (!nohp) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      try {
+        // Ambil data bank user
+        const refBank = ref(db, 'banks/' + nohp);
+        
+        onValue(refBank, (snapshot) => {
+          if (snapshot.exists()) {
+            const bankData = snapshot.val();
+            console.log('Data bank ditemukan:', bankData);
+            
+            let existingData = null;
+            
+            // Handle different data structures
+            if (bankData && typeof bankData === 'object') {
+              // Case 1: Direct bank data with properties
+              if (bankData.bankType || bankData.bankName || bankData.accountNumber) {
+                existingData = {
+                  bankType: bankData.bankType,
+                  bankName: bankData.bankName,
+                  bankNumber: bankData.bankNumber || bankData.accountNumber
+                };
+              }
+              // Case 2: Multiple banks, take the first one
+              else {
+                const firstKey = Object.keys(bankData)[0];
+                if (firstKey && bankData[firstKey]) {
+                  const firstBank = bankData[firstKey];
+                  existingData = {
+                    bankType: firstBank.bankType,
+                    bankName: firstBank.bankName,
+                    bankNumber: firstBank.bankNumber || firstBank.accountNumber
+                  };
+                }
+              }
+            }
+            
+            if (existingData) {
+              // Tampilkan data bank yang sudah ada
+              document.getElementById('existingBankSection').style.display = 'block';
+              document.getElementById('existingBankType').textContent = existingData.bankType || '-';
+              document.getElementById('existingBankName').textContent = existingData.bankName || '-';
+              document.getElementById('existingBankNumber').textContent = existingData.bankNumber || '-';
+              
+              // Sembunyikan form tambah bank
+              document.getElementById('bankFormSection').style.display = 'none';
+            } else {
+              console.error('Format data bank tidak dikenali:', bankData);
+              // Tetap tampilkan form jika data tidak valid
+              document.getElementById('existingBankSection').style.display = 'none';
+              document.getElementById('bankFormSection').style.display = 'block';
+            }
+          } else {
+            // Tampilkan form tambah bank jika belum ada
+            document.getElementById('existingBankSection').style.display = 'none';
+            document.getElementById('bankFormSection').style.display = 'block';
+          }
+        });
+
+      } catch (error) {
+        console.error('Error memuat data bank:', error);
+      }
+    }
+
+    // Fungsi untuk menyimpan data bank dengan format yang konsisten
+    async function saveBank() {
+      if (isProcessing) return;
+      
+      isProcessing = true;
+      
+      const nohp = localStorage.getItem('nohp');
+      if (!nohp) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const bankType = document.getElementById('bankType').value;
+      const bankName = document.getElementById('bankName').value.trim();
+      const bankNumber = document.getElementById('bankNumber').value.trim();
+      
+      // Validasi input
+      if (!bankType) {
+        alert('Harap pilih jenis bank atau e-wallet');
+        isProcessing = false;
+        return;
+      }
+      
+      if (!bankName) {
+        alert('Harap masukkan nama penerima');
+        isProcessing = false;
+        return;
+      }
+      
+      if (!bankNumber) {
+        alert('Harap masukkan nomor rekening atau e-wallet');
+        isProcessing = false;
+        return;
+      }
+
+      // Tampilkan loading state
+      const button = document.getElementById('saveBankBtn');
+      const originalText = button.innerHTML;
+      button.innerHTML = '<div class="loading-spinner"></div> Menyimpan...';
+      button.disabled = true;
+
+      try {
+        // Simpan data bank ke database dengan format yang konsisten
+        const bankRecord = {
+          bankType: bankType,
+          bankName: bankName,
+          bankNumber: bankNumber,
+          accountHolder: bankName, // Untuk kompatibilitas dengan format lama
+          accountNumber: bankNumber, // Untuk kompatibilitas dengan format lama
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        };
+
+        // Simpan dengan format yang konsisten
+        const refBank = ref(db, 'banks/' + nohp + '/primary');
+        await set(refBank, bankRecord);
+
+        // Tunggu sebentar untuk simulasi proses
+        setTimeout(() => {
+          document.getElementById('messageModal').style.display = 'flex';
+          isProcessing = false;
+        }, 1000);
+        
+      } catch (error) {
+        console.error('Error menyimpan data bank:', error);
+        alert('Terjadi kesalahan saat menyimpan data bank: ' + error.message);
+        button.innerHTML = originalText;
+        button.disabled = false;
+        isProcessing = false;
+      }
+    }
+
+    // Fungsi untuk menutup modal
+    function closeModal() {
+      document.getElementById('messageModal').style.display = 'none';
+      loadBankData();
+    }
+
+    // Fungsi navigasi
+    function goPage(page) {
+      window.location.href = page;
+    }
+
+    window.goPage = goPage;
+    window.saveBank = saveBank;
+    window.closeModal = closeModal;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadBankData();
+    });
+  </script>
+</body>
+</html>
