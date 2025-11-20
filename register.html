@@ -582,80 +582,122 @@
     // Flag untuk mencegah pemrosesan ganda
     let isProcessing = false;
 
-    // Fungsi untuk mengambil parameter dari URL
-    function getUrlParameter(name) {
-        name = name.replace(/[\[\]]/g, '\\$&');
-        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-            results = regex.exec(window.location.href);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
-
-    // Fungsi untuk mengambil parameter tanpa nama (seperti ?=123456)
-    function getUnnamedParameter() {
-        const url = window.location.href;
-        const questionMarkIndex = url.indexOf('?');
-        if (questionMarkIndex === -1) return null;
-        
-        const paramString = url.substring(questionMarkIndex + 1);
-        // Jika parameter dimulai dengan =, berarti itu parameter tanpa nama
-        if (paramString.startsWith('=')) {
-            return paramString.substring(1);
+    // ===============================
+    // FUNGSI AUTO-FILL REFERRAL CODE
+    // ===============================
+    
+    // Fungsi untuk mengambil kode referral dari URL - VERSI SIMPLE & PASTI BEKERJA
+    function getReferralCodeFromURL() {
+      console.log("Mencari kode referral di URL...");
+      
+      // Dapatkan URL lengkap
+      const currentURL = window.location.href;
+      console.log("URL saat ini:", currentURL);
+      
+      // Coba berbagai format parameter
+      let referralCode = null;
+      
+      // Format 1: ?=KODE (tanpa nama parameter)
+      if (currentURL.includes('?=')) {
+        const parts = currentURL.split('?=');
+        if (parts.length > 1) {
+          referralCode = parts[1].split('&')[0].split('#')[0];
+          console.log("Format 1 ditemukan, kode:", referralCode);
         }
-        
-        return null;
+      }
+      
+      // Format 2: ?ref=KODE (dengan nama parameter)
+      if (!referralCode && currentURL.includes('?ref=')) {
+        const parts = currentURL.split('?ref=');
+        if (parts.length > 1) {
+          referralCode = parts[1].split('&')[0].split('#')[0];
+          console.log("Format 2 ditemukan, kode:", referralCode);
+        }
+      }
+      
+      // Format 3: ?referral=KODE (alternatif)
+      if (!referralCode && currentURL.includes('?referral=')) {
+        const parts = currentURL.split('?referral=');
+        if (parts.length > 1) {
+          referralCode = parts[1].split('&')[0].split('#')[0];
+          console.log("Format 3 ditemukan, kode:", referralCode);
+        }
+      }
+      
+      // Format 4: Menggunakan URLSearchParams sebagai fallback
+      if (!referralCode) {
+        try {
+          const urlParams = new URLSearchParams(window.location.search);
+          referralCode = urlParams.get('ref') || urlParams.get('referral') || urlParams.get('kode');
+          console.log("Format 4 ditemukan, kode:", referralCode);
+        } catch (e) {
+          console.log("URLSearchParams error:", e);
+        }
+      }
+      
+      // Bersihkan kode dari karakter tidak valid
+      if (referralCode) {
+        referralCode = referralCode.replace(/[^a-zA-Z0-9]/g, '');
+      }
+      
+      console.log("Kode referral akhir:", referralCode);
+      return referralCode;
     }
 
     // Fungsi untuk menampilkan pesan referral
     function showReferralMessage(message) {
-        const messageContainer = document.getElementById('referralMessageContainer');
-        if (!messageContainer) return;
-        
-        messageContainer.innerHTML = `
-            <div class="referral-message">
-                <i class="fas fa-gift"></i>
-                ${message}
-                <i class="fas fa-check"></i>
-            </div>
-        `;
+      const messageContainer = document.getElementById('referralMessageContainer');
+      if (!messageContainer) return;
+      
+      messageContainer.innerHTML = `
+        <div class="referral-message">
+          <i class="fas fa-gift"></i>
+          ${message}
+          <i class="fas fa-check"></i>
+        </div>
+      `;
     }
 
-    // Fungsi untuk setup referral handling
-    function setupReferralHandling() {
-        // Coba ambil kode referral dari parameter URL
-        let referralCode = null;
+    // Fungsi utama untuk setup auto-fill referral
+    function setupAutoFillReferral() {
+      console.log("Memulai auto-fill referral...");
+      
+      const referralCode = getReferralCodeFromURL();
+      
+      if (referralCode) {
+        console.log("Kode referral ditemukan:", referralCode);
         
-        // Coba ambil dengan parameter tanpa nama terlebih dahulu (format: ?=123456)
-        referralCode = getUnnamedParameter();
-        
-        // Jika tidak ada, coba dengan parameter bernama 'ref' (format: ?ref=123456)
-        if (!referralCode) {
-            referralCode = getUrlParameter('ref');
+        const referralInput = document.getElementById('referralCode');
+        if (referralInput) {
+          // Isi input dengan kode referral
+          referralInput.value = referralCode;
+          
+          // Buat input lebih menarik
+          referralInput.readOnly = true;
+          referralInput.classList.add('referral-input-highlight');
+          
+          // Tampilkan pesan sukses
+          showReferralMessage(`Kode referral <strong>${referralCode}</strong> telah terisi otomatis!`);
+          
+          // Simpan di localStorage untuk backup
+          localStorage.setItem('pending_referral', referralCode);
+          
+          console.log("Auto-fill berhasil!");
+        } else {
+          console.log("Input referral tidak ditemukan!");
         }
-        
-        console.log('Referral code dari URL:', referralCode);
-        
-        // Jika ada kode referral, isi otomatis ke input
-        if (referralCode) {
-            const referralInput = document.getElementById('referralCode');
-            if (referralInput) {
-                referralInput.value = referralCode;
-                referralInput.readOnly = true;
-                referralInput.classList.add('referral-input-highlight');
-                
-                // Tampilkan pesan bahwa kode referral telah terisi otomatis
-                showReferralMessage(`Kode referral <strong>${referralCode}</strong> telah terisi otomatis!`);
-                
-                // Simpan di localStorage untuk digunakan nanti saat submit form
-                localStorage.setItem('pending_referral', referralCode);
-            }
-        }
+      } else {
+        console.log("Tidak ada kode referral di URL");
+      }
     }
+
+    // ===============================
+    // FUNGSI PENDAFTARAN USER
+    // ===============================
 
     // Fungsi untuk generate kode referral acak
     function generateReferralCode() {
-        return Math.floor(1000000 + Math.random() * 9000000).toString();
+      return Math.floor(1000000 + Math.random() * 9000000).toString();
     }
 
     // Fungsi untuk menampilkan modal pesan
@@ -804,9 +846,12 @@
         });
         
         // Proses referral jika ada
-        const referralCodeFromUrl = localStorage.getItem('pending_referral') || userData.referralCode;
-        if (referralCodeFromUrl && referralCodeFromUrl.trim() !== '') {
-          await processReferral(userData.nohp, referralCodeFromUrl);
+        const referralCodeFromURL = getReferralCodeFromURL() || 
+                                   localStorage.getItem('pending_referral') || 
+                                   userData.referralCode;
+        
+        if (referralCodeFromURL && referralCodeFromURL.trim() !== '') {
+          await processReferral(userData.nohp, referralCodeFromURL);
           localStorage.removeItem('pending_referral');
         }
         
@@ -838,6 +883,10 @@
       }
     }
 
+    // ===============================
+    // EVENT LISTENERS & INITIALIZATION
+    // ===============================
+
     // Fungsi navigasi
     function goBack() {
       window.history.back();
@@ -845,8 +894,10 @@
 
     // Event listener ketika DOM siap
     document.addEventListener('DOMContentLoaded', function() {
-      // Setup referral handling
-      setupReferralHandling();
+      console.log("DOM siap, menjalankan auto-fill referral...");
+      
+      // Jalankan auto-fill referral
+      setupAutoFillReferral();
       
       // Handle form submission
       const registerForm = document.getElementById('registerForm');
@@ -880,7 +931,9 @@
       }
     });
 
+    // Export fungsi ke window object
     window.goBack = goBack;
+    window.setupAutoFillReferral = setupAutoFillReferral;
   </script>
 </body>
 </html>
