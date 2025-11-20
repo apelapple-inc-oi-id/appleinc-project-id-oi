@@ -1143,9 +1143,9 @@
         // Tampilkan kode referral
         document.getElementById('referralCode').textContent = userData.referral_code || 'TIDAK ADA';
         
-        // PERBAIKAN: Menggunakan format yang konsisten - mengarah ke register.html
-        const baseUrl = window.location.origin;
-        document.getElementById('referralUrl').textContent = baseUrl + '/register.html?ref=' + (userData.referral_code || '');
+        // PERBAIKAN: Menggunakan URL yang benar mengarah ke register.html dengan format yang tepat
+        const baseUrl = "https://apelapple-inc-oi-id.github.io/appleinc-project-id-oi";
+        document.getElementById('referralUrl').textContent = baseUrl + '/register.html?=' + (userData.referral_code || '');
 
         // Hitung statistik referral
         await loadReferralStats(nohp);
@@ -1232,7 +1232,7 @@
       }
     }
 
-    // Fungsi untuk berbagi ke WhatsApp
+    // PERBAIKAN: Fungsi untuk berbagi ke WhatsApp dengan URL yang benar
     function shareToWhatsApp() {
       if (isProcessing) return;
       
@@ -1244,12 +1244,12 @@
         return;
       }
       
-      const message = `Hai! Saya ingin mengundang Anda untuk bergabung dengan Apple Invest. Dapatkan keuntungan investasi yang menarik. Gunakan kode referral saya: ${code}\n\n${url}`;
+      const message = `Hai! Saya ingin mengundang Anda untuk bergabung dengan Apple Invest. Dapatkan keuntungan investasi yang menarik. Daftar di: ${url}`;
       const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
     }
 
-    // Fungsi untuk berbagi ke Telegram
+    // PERBAIKAN: Fungsi untuk berbagi ke Telegram dengan URL yang benar
     function shareToTelegram() {
       if (isProcessing) return;
       
@@ -1261,7 +1261,7 @@
         return;
       }
       
-      const message = `Hai! Saya ingin mengundang Anda untuk bergabung dengan Apple Invest. Dapatkan keuntungan investasi yang menarik. Gunakan kode referral saya: ${code}`;
+      const message = `Hai! Saya ingin mengundang Anda untuk bergabung dengan Apple Invest. Dapatkan keuntungan investasi yang menarik.`;
       const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(message)}`;
       window.open(telegramUrl, '_blank');
     }
