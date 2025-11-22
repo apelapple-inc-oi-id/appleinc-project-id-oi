@@ -970,8 +970,8 @@
         const referralCode = userData.referral_code || 'TIDAK ADA';
         
         // PERBAIKAN: Menggunakan URL yang benar mengarah ke register.html dengan format yang tepat
-        const baseUrl = "https://apelapple-inc-oi-id.github.io/appleinc-project-id-oi";
-        const referralLink = baseUrl + '/register.html?=' + referralCode;
+        const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+        const referralLink = baseUrl + '/register.html?ref=' + referralCode;
         
         document.getElementById('referralCode').textContent = referralCode;
         document.getElementById('referralLink').value = referralLink;
