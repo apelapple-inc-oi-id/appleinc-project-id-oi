@@ -1307,7 +1307,7 @@
           status: 'active'
         };
 
-        // Berikan komisi ke upline jika ini pembelian pertama
+        // PERBAIKAN: Berikan komisi ke upline jika ini pembelian pertama untuk produk ini
         if (!userData.purchases || !userData.purchases[kode]) {
           // Logika komisi untuk upline dengan persentase baru
           if (userData.upline) {
@@ -1316,7 +1316,7 @@
             
             if (snapUpline1.exists()) {
               const upline1Data = snapUpline1.val();
-              const komisi1 = Math.round(harga * 0.20); // 20% untuk level 1
+              const komisi1 = Math.round(harga * 0.25); // 25% untuk level 1
               updates['/users/' + userData.upline + '/saldo'] = (upline1Data.saldo || 0) + komisi1;
               
               // Catat komisi untuk level 1
@@ -1425,4 +1425,4 @@
     });
   </script>
 </body>
-</html>
+      </html>
