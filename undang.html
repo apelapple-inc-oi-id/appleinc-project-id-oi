@@ -998,7 +998,7 @@
             </div>
           </div>
           <div class="commission-amount">
-            <div class="commission-percent">20%</div>
+            <div class="commission-percent">25%</div>
             <div class="commission-desc">dari pembelian pertama</div>
           </div>
         </div>
@@ -1144,8 +1144,8 @@
         document.getElementById('referralCode').textContent = userData.referral_code || 'TIDAK ADA';
         
         // PERBAIKAN: Menggunakan URL yang benar mengarah ke register.html dengan format yang tepat
-        const baseUrl = "https://apelapple-inc-oi-id.github.io/appleinc-project-id-oi";
-        document.getElementById('referralUrl').textContent = baseUrl + '/register.html?=' + (userData.referral_code || '');
+        const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+        document.getElementById('referralUrl').textContent = baseUrl + '/register.html?ref=' + (userData.referral_code || '');
 
         // Hitung statistik referral
         await loadReferralStats(nohp);
